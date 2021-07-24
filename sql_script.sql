@@ -85,33 +85,21 @@ create table `user_detail`
   `identification_card_number` varchar(255),
   `date_of_birth` datetime(6),
   `telephone` int(11),
+	`email` varchar(255) not null,
+    `password` text not null,
+    `is_actived` boolean default 0,
+    `account_role` varchar(255),
+    `token` VARCHAR(255) ,
+    `created_at` datetime(6),
+    `expired_at` datetime(6),
+    `confirmed_at` datetime(6),
+    `token_login` text,
   PRIMARY KEY(`id`)
 )ENGINE=InnoDB
 AUTO_INCREMENT = 1;
 
-create table `account_detail`
-(
-	`email` varchar(255) not null,
-    `password` text not null,
-    `is_actived` boolean default 0,
-    `is_locked` boolean default 0,
-    `token_login` text ,
-    `account_role` varchar(255),
-    `user_detail_id` bigint(20) not null,
-    PRIMARY KEY(`email`),
-    CONSTRAINT `fk_user` FOREIGN KEY (`user_detail_id`) REFERENCES `user_detail` (`id`)
-)ENGINE=InnoDB;
+insert into user_detail(name,gender,telephone,email,password)
+values('duy',0,0,'dongok',123)
 
-create table `confirmation_token`
-(
-	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`token` VARCHAR(255) ,
-    `created_at` datetime(6),
-    `expired_at` datetime(6),
-    `confirmed_at` datetime(6),
-    `account_detail_email` varchar(255),
-    PRIMARY KEY(`id`),
-    CONSTRAINT `fk_account` FOREIGN KEY (`account_detail_email`) REFERENCES `account_detail` (`email`)
-)ENGINE=InnoDB;
 
 
