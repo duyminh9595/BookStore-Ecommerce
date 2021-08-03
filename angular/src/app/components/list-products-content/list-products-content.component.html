@@ -1,0 +1,38 @@
+<div class="features_items">
+    <!--features_items-->
+    <h2 class="title text-center">Tất cả sản phẩm</h2>
+    <div class="col-sm-4" *ngFor="let item of products" >
+        <div class="product-image-wrapper" style="height: 410px;">
+            <div class="single-products">
+                <div class="productinfo text-center">
+                    <img src="{{item.image_url}}" alt="" />
+                    <h2 id="priceClick" (click)="showProductDetail(item)">{{ item.price | number:'':'es' }}</h2>
+                    <p (click)="showProductDetail(item)">{{item.name
+                        |slice:0:55 }}{{item.name.length >55 ? '...' : ''}}</p>
+
+                    <a (click)="addToCart(item)" class="btn btn-default add-to-cart" style="font-size: 14pt;" *ngIf="item.quantity>0"><i
+                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                            <a disabled class="btn btn-default add-to-cart" style="font-size: 14pt;" *ngIf="item.quantity<=0"><i
+                                class="fa fa-shopping-cart"></i><del>Hết hàng rồi</del></a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<!--features_items-->
+
+<div class="container" style="margin-top: 15px;">
+    <div class="row">
+        <div class="col-md-6 mx-auto" stytle="margin:auto">
+            <ngb-pagination [(page)]="page" [boundaryLinks]="true" [maxSize]=5 [pageSize]="size"
+                (pageChange)="listProducts()" [collectionSize]="totalElements" >
+
+            </ngb-pagination>
+        </div>
+    </div>
+</div>

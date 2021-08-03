@@ -1,12 +1,13 @@
 package comecommerce.bookstore.entity;
 
+import com.google.common.collect.Lists;
 import comecommerce.bookstore.role.ROLE;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.*;
 
 @Data
 @Entity
@@ -57,4 +58,23 @@ public class UserMember {
 
     @Column(name="token_login",nullable = true)
     private String token_login;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user_detail")
+    private List<Order> orders;
+
+    public void AddOrderList(Order order)
+    {
+        if(order!=null)
+        {
+            if(orders==null)
+            {
+                orders= new ArrayList<>();
+            }
+            int t=orders.size();
+            order.setId(0l);
+            orders.add(order);
+            int k=orders.size();
+            order.setUser_detail(this);
+        }
+    }
 }

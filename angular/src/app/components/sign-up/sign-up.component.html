@@ -1,0 +1,93 @@
+<div class="signup-form">
+    <!--sign up form-->
+    <h2>New User Signup!</h2>
+    <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()">
+        <div formGroupName="member">
+            <input type="text" placeholder="Name" formControlName="fullName" />
+            <div *ngIf="fullName?.invalid && (fullName?.dirty || fullName?.touched)" class="alert alert-danger mt-1"
+                style="display: block;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            height: 40px;
+            margin-bottom: 10px;">
+
+                <div *ngIf="fullName?.errors?.required || fullName?.errors?.notOnlyWhitespace">
+                    Tên không đươc bỏ trống
+                </div>
+
+                <div *ngIf="fullName?.errors?.minlength">
+                    Tên ít nhất 5 ký tự
+                </div>
+
+            </div>
+            <input type="email" placeholder="Email Address" formControlName="email" />
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert alert-danger mt-1" style="display: block;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            height: 40px;
+            margin-bottom: 10px;">
+
+                <div *ngIf="email?.errors?.required">
+                    Email khong được bỏ trống
+                </div>
+
+                <div *ngIf="email?.errors?.pattern">
+                    Không đúng dịnh dạng email
+                </div>
+                <div class="alert alert-danger mt-1" *ngIf="checkEmailInValid==true">
+                    Email này đã được sử dụng
+                </div>
+            </div>
+            <input type="text" placeholder="Số Điện Thoai" formControlName="telephone" />
+            <div *ngIf="telephone?.invalid && (telephone?.dirty || telephone?.touched)" class="alert alert-danger mt-1"
+                style="display: block;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            height: 40px;
+            margin-bottom: 10px;">
+
+                <div *ngIf="telephone?.errors?.required ">
+                    Dien thoai không đươc bỏ trống
+                </div>
+                <div *ngIf="telephone?.errors?.pattern ">
+                    Điện thoại không được có ký tự
+                </div>
+
+            </div>
+            <h3>Chọn giới tính</h3>
+            <select class="form-select-md form-select-sm" formControlName="gender" style="display: block;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            height: 40px;
+            margin-bottom: 10px;">
+                <option [value]=1 selected>Nam</option>
+                <option [value]=0>Nữ</option>
+            </select>
+            <input type="password" placeholder="Password" formControlName="passWord" />
+            <div *ngIf="passWord?.invalid && (passWord?.dirty || passWord?.touched)" class="alert alert-danger mt-1"
+                style="display: block;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            height: 40px;
+            margin-bottom: 10px;">
+
+                <div *ngIf="passWord?.errors?.required || passWord?.errors?.notOnlyWhitespace">
+                    Password không đươc bỏ trống
+                </div>
+
+                <div *ngIf="passWord?.errors?.minlength">
+                    Password ít nhất 7 ký tự
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-default">Signup</button>
+        </div>
+    </form>
+</div>
+<!--/sign up form-->
+

@@ -1,6 +1,5 @@
 package comecommerce.bookstore.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -29,10 +28,10 @@ public class Book {
     private Long price;
 
     @Column(name="date_created")
-    private Date date_created;
+    private Date dateCreated;
 
     @Column(name="last_updated")
-    private Date last_updated;
+    private Date lastUpdated;
 
 
     @Column(name="active")
@@ -45,4 +44,21 @@ public class Book {
     @ManyToOne
     @JoinColumn(nullable = false,name = "category_id")
     private Category category;
+
+//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "book")
+//    private Set<OrderItem> orderItems=new HashSet<>();
+//
+//    public void addOrderItemBook(OrderItem orderItem)
+//    {
+//        if(orderItem!=null)
+//        {
+//            if(orderItems==null)
+//            {
+//                orderItems=new HashSet<>();
+//
+//            }
+//            orderItems.add(orderItem);
+//            orderItem.setBook(this);
+//        }
+//    }
 }

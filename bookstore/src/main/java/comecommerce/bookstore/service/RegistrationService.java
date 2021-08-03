@@ -44,7 +44,8 @@ public class RegistrationService {
         userMember.setExpiredAt(LocalDateTime.now().plusMinutes(30));
         userMember.set_actived(false);
         userDetailRepository.save(userMember);
-        String link="http://localhost:8080/api/register/confirm?token="+token;
+//        String link="http://localhost:8080/api/register/confirm?token="+token;
+        String link="http://localhost:4200/api/register/confirm/token/"+token;
         emailSenderService.sendSimpleMessage(request.getEmail(),"xac nhan dang ky tai ngok ngek boy",link);
         return token;
     }

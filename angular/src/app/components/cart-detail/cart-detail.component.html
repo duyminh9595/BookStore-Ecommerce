@@ -1,0 +1,26 @@
+<div class="container" style="font-size: 12pt;">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Mã sản phẩm</th>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Hình Ảnh</th>
+                    <th scope="col">Số Lượng</th>
+                    <th scope="col">Tổng Tiền</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of cartDetails">
+                    <th scope="row"><a routerLink='/product/{{item.idBook}}' routerLinkActive='active'>{{item.idBook}}</a></th>
+                    <td>{{item.name}}</td>
+                    <td><img src="{{item.image_url}}" style="width: 80px;height: 80px;" alt=""></td>
+                    <td>{{item.quantity_sell}}</td>
+                      <td>{{item.quantity_sell * item.price}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

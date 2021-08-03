@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -45,7 +46,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
             List<Map<String,String>>  authorities=
                     (List<Map<String,String>>)body.get("authorities");
             Set<SimpleGrantedAuthority>simpleGrantedAuthorities= authorities.stream()
-                    .map(m->new SimpleGrantedAuthority("authority"))
+                    .map(m->new SimpleGrantedAuthority(m.get("authority")))
                     .collect(Collectors.toSet());
             Authentication authentication=new UsernamePasswordAuthenticationToken(
                     userName,
@@ -58,5 +59,14 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
             throw new IllegalStateException("Token cannot be trusted");
         }
         filterChain.doFilter(request,response);
+    }
+    private String parseJwt(HttpServletRequest request) {
+        String headerAuth = request.getHeader("Authorization");
+
+        if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+            return headerAuth.substring(7, headerAuth.length());
+        }
+
+        return null;
     }
 }

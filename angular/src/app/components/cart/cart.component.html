@@ -1,0 +1,100 @@
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <h2><a routerLinkActive='active' routerLink='' style="color: black;">Home</a> / <a routerLinkActive='active'
+                    routerLink='/cart'>Cart</a></h2>
+        </div>
+        <div class="table-responsive cart_info" style="border: none;" style="margin-top: 35px;width: 1150p;">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Item</td>
+                        <td class="description"></td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="total">Total</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cartItems">
+                        <td class="cart_product" style="width: 140px;">
+                            <a routerLink='/product/{{item.id}}' routerLinkActive='active'><img src="{{item.image_url}}"
+                                    alt="" style="height: 110px;width: 110px;"></a>
+                        </td>
+                        <td class="cart_description">
+                            <h4 style="color: red;" *ngIf="item.quantity>item.quantityInstock"><del><a routerLink='/product/{{item.id}}' routerLinkActive='active'>{{item.name
+                                    |slice:0:50}}</a></del></h4>
+                            <h4 *ngIf="item.quantity<=item.quantityInstock"><a routerLink='/product/{{item.id}}' routerLinkActive='active'>{{item.name
+                                    |slice:0:50}}</a></h4>
+                            <p style="font-size: 10pt;">ID: {{item.id}}</p>
+                            <div *ngIf="item.quantity==item.quantityInstock">
+                                <div  class="alert alert-warning" role="alert" style="width: auto;font-size: 12pt;">
+                                    Số lượng đạt giới hạn
+                                  </div>
+                            </div>
+                            <div *ngIf="item.quantity>item.quantityInstock">
+                                <div  class="alert alert-danger" role="alert" style="width: auto;font-size: 12pt;">
+                                    Số lượng không còn đủ
+                                  </div>
+                            </div>
+                        </td>
+                        <td class="cart_price">
+                            <p>{{item.price|number:'':'es'}}</p>
+                        </td>
+                        <td class="cart_quantity">
+                            <div class="cart_quantity_button">
+                                <a *ngIf="item.quantity<item.quantityInstock" class="cart_quantity_up" (click)="addQuantity(item)"> + </a> 
+                                <a id="disabled" *ngIf="item.quantity>=item.quantityInstock" class="cart_quantity_up" disable > + </a> 
+                                <input class="cart_quantity_input" type="text" name="quantity" value="{{item.quantity}}"
+                                    autocomplete="off" size="2" disabled>
+                                <a  class="cart_quantity_down" (click)="minusQuantity(item)"> - </a>
+                                
+                            </div>
+                            
+                        </td>
+                        <td class="cart_total">
+                            <p class="cart_total_price">{{(item.price * item.quantity)}}</p>
+                        </td>
+                        <td class="cart_delete">
+                            <a (click)="removeCart(item)" class="cart_quantity_delete"><i class="fa fa-times"></i></a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--/#cart_items-->
+
+<section id="do_action">
+    <div class="container">
+        <div class="heading">
+            <h3>Kiểm tra số tiền rối nhấn checkout</h3>
+            <p></p>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="font-size: 12pt;height: 280px;">
+                <div class="total_area">
+                    <ul>
+                        <li>Tổng tiền chưa thuế <span>{{totalPrice | number:'':'es'}} VNĐ</span></li>
+                        <li>Thuế 10%; <span>{{totalPrice*10/100 |number:'':'es'}} VNĐ</span></li>
+                        <li>Shipping Cost <span>Free</span></li>
+                        <li>Tổng cộng<span>{{totalPrice*110/100 | number:'':'es'}} VNĐ</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 justify-conent-mg-right" style="margin-bottom: 15px;">
+                    <a  style="font-size: 12pt;position: absolute; right: 0;" class="btn btn-primary check_out" (click)="doCheckOut()">Check Out</a>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/#do_action-->

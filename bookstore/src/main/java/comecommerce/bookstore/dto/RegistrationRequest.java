@@ -1,12 +1,17 @@
 package comecommerce.bookstore.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
 public class RegistrationRequest {
-    private final String name;
-    private final boolean gender;
-    private final String password;
-    private final String email;
-    private final int telephone;
+    private  String name;
+    private boolean gender;
+    private String password;
+    private  String email;
+    private  int telephone;
 }

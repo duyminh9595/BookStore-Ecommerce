@@ -1,0 +1,82 @@
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <h2><a routerLinkActive='active' routerLink='' style="color: black;">Home</a> / <a routerLinkActive='active'
+                    routerLink='/checkout'> Checkout</a></h2>
+            </ol>
+        </div><!--/breadcrums-->
+
+
+        <div class="shopper-informations">
+            <div class="row">
+                <div class="col-md-7 clearfix" style="font-size:12pt;">
+                    <div class="bill-to">
+                        <p>Bill To</p>
+                        <div class="form-one">
+                            <form [formGroup]="formCko" *ngIf="this.formCko">
+                                <input type="text" placeholder="Họ và Tên"  formControlName="name" readonly>
+                                <input type="text" placeholder="Email"  formControlName="email" readonly>
+                                <input type="text" placeholder="Title">
+                                
+                                
+                                <input type="text" placeholder="Phone *">
+                            </form>
+                        </div>
+                        <div class="form-two">
+                            <form [formGroup]="formAddress">
+                                <select (change)="getDistinct()" formControlName="province">
+                                    <option *ngFor="let item of thanhpho" [ngValue]="item">{{item.name}}</option>
+                                </select>
+                                <select formControlName="distinct" (change)="getWards()">
+                                    <option *ngFor="let item of distinctBaseOnProvinceCode" [ngValue]="item">{{item.name}}</option>
+                                </select>
+                                <select formControlName="ward">
+                                    <option *ngFor="let item of wardsSelected" [ngValue]="item">{{item.name}}</option>
+                                </select>
+                                <input type="text" placeholder="Địa chỉ" formControlName="address">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="order-message">
+                        <p>Ghi chú</p>
+                        <textarea #myInput style="font-size: 15pt;" name="message"  placeholder="Ghi chú cho đơn hàng" rows="16"></textarea>
+                        
+                    </div>	
+                </div>					
+            </div>
+        </div>
+
+        <section id="do_action">
+            <div class="container">
+                <div class="heading">
+                    <h3>Kiểm tra số tiền rối nhấn checkout</h3>
+                    <p></p>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="font-size: 12pt;height: 280px;">
+                        <div class="total_area">
+                            <ul>
+                                <li>Tổng tiền chưa thuế <span>{{totalPrice | number:'':'es'}} VNĐ</span></li>
+                                <li>Thuế 10%; <span>{{totalPrice*10/100 |number:'':'es'}} VNĐ</span></li>
+                                <li>Shipping Cost <span>Free</span></li>
+                                <li>Tổng cộng<span>{{totalPrice*110/100 | number:'':'es'}} VNĐ</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 justify-conent-mg-right" style="margin-bottom: 15px;">
+                            <a  style="font-size: 12pt;position: absolute; right: 0;" class="btn btn-primary check_out" (click)="doCheckOut(myInput.value)">Check Out</a>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section> <!--/#cart_items-->

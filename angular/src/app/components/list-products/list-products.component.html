@@ -1,0 +1,46 @@
+<section id="advertisement">
+    <div class="container">
+        <img src="assets/list-product.jpg" alt="" style="height: 180px;"/>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Nhà Xuất Bản</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-productsr-->
+                        <app-list-publiser></app-list-publiser>
+                        
+                    </div>
+                    <!--/category-productsr-->
+
+                    <div class="brands_products">
+                        <!--brands_products-->
+                        <h2>Thể Loại</h2>
+                        <div class="brands-name">
+                            <app-list-category></app-list-category>
+                        </div>
+                    </div>
+                    <!--/brands_products-->
+
+                    
+                    <!--/price-range-->
+
+                    <div class="shipping text-center">
+                        <!--shipping-->
+                        <img src="assets/mecon.gif" alt="" />
+                    </div>
+                    <!--/shipping-->
+
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</section>

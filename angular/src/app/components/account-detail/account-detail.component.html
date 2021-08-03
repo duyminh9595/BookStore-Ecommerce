@@ -1,0 +1,63 @@
+<div id="contact-page" class="container">
+    <div class="bg">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="contact-form">
+                    <h2 class="title text-center">Thông Tin Cá Nhân</h2>
+                    <div class="status alert alert-success" style="display: none"></div>
+                    <form [formGroup]="frmAccountDetail" *ngIf="this.frmAccountDetail">
+                        <div class="form-group col-md-6">
+                            <h2 class="title text-center">Họ Và Tên</h2>
+                            <input type="text" name="name" class="form-control" required="required" placeholder="Name"
+                                formControlName="name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <h2 class="title text-center">Email</h2>
+                            <input type="email" name="email" class="form-control" required="required"
+                                placeholder="Email" readonly formControlName="email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <h2 class="title text-center">Giới Tính</h2>
+                            <select type="text" name="subject" class="form-control" required="required"
+                                placeholder="Subject" formControlName="gender" >
+                                <option value=1>Nam</option>
+                                <option value=0>Nữ</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <h2 class="title text-center">Ngày Tháng Năm Sinh</h2>
+
+                            <div class="row">
+                                <div class="col-md-9 col-sm-9">
+                                    <input class="form-control" placeholder="{{dateOfBirth}}" name="dp" ngbDatepicker
+                                        #d="ngbDatepicker"  readonly formControlName="ngaysinh">
+                                </div>
+
+                                <div class="col-md-3 col-sm-3">
+                                    <button style="font-size: 16pt;" class="btn btn-outline-secondary calendar"
+                                        (click)="d.toggle()" type="button">Chon Ngay</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <h2 class="title text-center">SDT</h2>
+                            <input type="sdt" name="sdt" class="form-control" required="required"
+                                placeholder="SDT"  formControlName="sdt">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <h2 class="title text-center">Mật Khẩu</h2>
+                            <input type="password" name="password" class="form-control" required="required"
+                                placeholder="Password" formControlName="password">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <input style="font-size: 15pt;" type="submit" name="submit"
+                                class="btn btn-primary pull-right" value="Submit" (click)="updateDetail()">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

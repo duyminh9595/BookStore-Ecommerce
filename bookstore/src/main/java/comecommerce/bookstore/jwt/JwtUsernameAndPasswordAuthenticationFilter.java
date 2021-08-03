@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import comecommerce.bookstore.dto.UsernameAndPasswordAuthenticationRequest;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,10 +20,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 
+
 public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
-
+    public String tokenReturn;
     public JwtUsernameAndPasswordAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
@@ -56,6 +59,8 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                 .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusDays(10)))
                 .signWith(Keys.hmacShaKeyFor(key.getBytes()))
                 .compact();
+        tokenReturn=token;
         response.addHeader("Authorization","Bearer "+token);
     }
+
 }

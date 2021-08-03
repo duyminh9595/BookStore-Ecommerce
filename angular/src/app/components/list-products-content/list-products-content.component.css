@@ -1,0 +1,15 @@
+ngb-pagination /deep/ .page-item.disabled .page-link {
+    background-color: #f0f0e9;
+}
+ngb-pagination /deep/ .page-item .page-link {
+    height: 50px;
+    line-height: 50px;
+    font-size: large;
+}
+p{
+    cursor: pointer;
+}
+#priceClick
+{
+    cursor: pointer;
+}

@@ -3,6 +3,7 @@ package comecommerce.bookstore.service;
 import comecommerce.bookstore.dao.UserDetailRepository;
 import comecommerce.bookstore.entity.UserMember;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service

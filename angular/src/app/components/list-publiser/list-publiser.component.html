@@ -1,0 +1,17 @@
+<div class="panel panel-default" *ngFor="let item of dataCatQuantityPub">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordian" href="#d_{{item.pubId}}" >
+          <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+          {{item.pubName}}
+        </a>
+      </h4>
+    </div>
+    <div id="d_{{item.pubId}}" class="panel-collapse collapse" >
+      <div class="panel-body">
+        <ul *ngFor="let data of item.ls">
+          <li *ngIf="data.quantity>0"><a routerLinkActive='active' routerLink='/pubId/{{item.pubId}}/catId/{{data.catId}}'>{{data.catName}} ({{data.quantity}})</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>

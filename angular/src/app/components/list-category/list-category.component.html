@@ -1,0 +1,3 @@
+<ul class="nav nav-pills nav-stacked" *ngFor="let item of cats">
+    <li><a routerLink='/catId/{{item.catId}}' routerLinkActive='active'><span class="pull-right"> ({{item.quantity}})</span>{{item.catName  }}  </a></li>
+</ul>
